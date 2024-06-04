@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { AiOutlinePlus } from 'react-icons/ai';
-import Todo from './ToDo'; // Ensure correct casing here
+import Todo from './ToDo'; 
 import { db } from './firebase';
 import {
   query,
@@ -75,10 +74,10 @@ function App() {
             onChange={(e) => setInput(e.target.value)}
             className={style.input}
             type='text'
-            placeholder='Add'
+            placeholder='Add todo'
           />
           <button className={style.button}>
-            <AiOutlinePlus size={30} />
+            Add
           </button>
         </form>
         <ul className={style.listGroup}>
