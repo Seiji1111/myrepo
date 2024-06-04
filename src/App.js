@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { AiOutlinePlus } from 'react-icons/ai';
 import Todo from './ToDo'; 
 import { db } from './firebase';
 import {
@@ -42,6 +43,7 @@ function App() {
     setInput('');
   };
 
+
   useEffect(() => {
     const q = query(collection(db, 'todos'));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -54,11 +56,13 @@ function App() {
     return () => unsubscribe();
   }, []);
 
+
   const toggleComplete = async (todo) => {
     await updateDoc(doc(db, 'todos', todo.id), {
       completed: !todo.completed,
     });
   };
+
 
   const deleteTodo = async (id) => {
     await deleteDoc(doc(db, 'todos', id));
@@ -74,10 +78,10 @@ function App() {
             onChange={(e) => setInput(e.target.value)}
             className={style.input}
             type='text'
-            placeholder='Add todo'
+            placeholder='Add'
           />
           <button className={style.button}>
-            Add
+            <AiOutlinePlus size={30} />
           </button>
         </form>
         <ul className={style.listGroup}>
