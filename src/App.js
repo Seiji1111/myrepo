@@ -1,4 +1,4 @@
-// App.js
+
 import React, { useState, useEffect } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import Todo from './ToDo'; // Ensure correct casing here
@@ -30,7 +30,6 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [input, setInput] = useState('');
 
-  // Create todo
   const createTodo = async (e) => {
     e.preventDefault();
     if (input === '') {
@@ -44,7 +43,6 @@ function App() {
     setInput('');
   };
 
-  // Read todo from firebase
   useEffect(() => {
     const q = query(collection(db, 'todos'));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -57,14 +55,12 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  // Update todo in firebase
   const toggleComplete = async (todo) => {
     await updateDoc(doc(db, 'todos', todo.id), {
       completed: !todo.completed,
     });
   };
 
-  // Delete todo
   const deleteTodo = async (id) => {
     await deleteDoc(doc(db, 'todos', id));
   };
